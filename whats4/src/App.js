@@ -3,22 +3,18 @@ import './App.css';
 import List from './components/List'
 import styled from 'styled-components';
 import bg from './images/whats4bg.png'
+import Formulario from './Components/Formulario/Formulario'
 
 const Box = styled.div`
   display: grid;
-  grid-template-rows: 80% 20%;
-  grid-template-columns: 100%;
+  grid-template-rows: 1fr 40px;
+  grid-template-columns: 1fr;
   width: 400px;
   max-width: 90vw;
   border: 1px solid grey;
   height: calc(100vh - 2px);
   margin: 0 auto;
   background-image: url(${bg});
-`
-const Form = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 class App extends React.Component {
   constructor(props) {
@@ -27,20 +23,22 @@ class App extends React.Component {
       messages: [
         { user: "Alfnori", message: "Teste do Dofo" },
         { user: "AdaniConelari", message: "Teste do Nadia" },
-        { user: "Skywalker", message: "Teste do Luke" },
+        { user: "eu", message: "Teste do Luke" },
       ]
     }
-
   }
+
+  onAddMessage = (data) => {
+    this.setState({
+      messages: [...this.state.messages, data]
+    })
+  } 
+
   render() {
     return (
       <Box>
         <List items={this.state.messages} />
-        <Form>
-          <p>1</p>
-          <p>2</p>
-          <p>3</p>
-        </Form>
+        <Formulario onAddMessage={onAddMessage}/>
       </Box>
     )
   }
