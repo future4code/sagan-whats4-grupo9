@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import List from './Components/List'
+import List from './components/List'
 import styled from 'styled-components';
 import bg from './images/whats4bg.png'
 import Formulario from './Components/Formulario/Formulario'
@@ -29,17 +29,25 @@ class App extends React.Component {
       user: usuario,
       message: mensagem
     }
-
     this.setState({
       messages: [...this.state.messages, msg]
     })
   } 
 
+  onDoubleClick = (key) => {
+    const messages = this.state.messages.filter (
+      (value, index) => { return index !== key}
+    )
+    this.setState({
+      messages:messages
+    })
+  }
+
 
   render() {
     return (
       <Box>
-        <List items={this.state.messages} />
+        <List items={this.state.messages} onDoubleClick={this.onDoubleClick}/>
         <Formulario clickBotao={this.onAddMessage}/>
       </Box>
     )
