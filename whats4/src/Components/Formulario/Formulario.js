@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
 const ContainerForm = styled.section`
@@ -21,22 +20,29 @@ const Enviar = styled.button`
 class Formulario extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            usuario: '',
+            mensagem: ''
+        }
     }
+
+
 
     render() {
         return (
             <ContainerForm>
-                <Usuario value={this.props.usuario} placeholder='Usuário'/>
-                <Texto value={this.props.texto} placeholder='Mensagem'/>
-                <Enviar onClick={this.props.clickBotao}>Enviar</Enviar>
+                <Usuario onKeyDown={(event) => {
+                    if (event.keyCode === 13) this.props.clickBotao(this.state.usuario, this.state.mensagem) }} 
+                    value={this.state.usuario} onChange={(event) => { this.setState({ usuario: event.target.value })}} placeholder='Usuário'/>
+                <Texto onKeyDown={(event) => {
+                    if (event.keyCode === 13) this.props.clickBotao(this.state.usuario, this.state.mensagem) }} 
+                value={this.state.mensagem} onChange={(event) => { this.setState({ mensagem: event.target.value })}} placeholder='Mensagem'/>
+                <Enviar onClick={() => { this.props.clickBotao(this.state.usuario, this.state.mensagem) }}
+                >Enviar
+                </Enviar>
             </ContainerForm>
         )
     }
-}
-
-Formulario.propTypes = {
-    usuario: PropTypes.string.isRequired,
-    texto: PropTypes.string.isRequired
 }
 
 export default Formulario;

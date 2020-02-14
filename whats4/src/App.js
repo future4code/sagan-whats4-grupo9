@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import List from './components/List'
+import List from './Components/List'
 import styled from 'styled-components';
 import bg from './images/whats4bg.png'
 import Formulario from './Components/Formulario/Formulario'
@@ -20,25 +20,27 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      messages: [
-        { user: "Alfnori", message: "Teste do Dofo" },
-        { user: "AdaniConelari", message: "Teste do Nadia" },
-        { user: "eu", message: "Teste do Luke" },
-      ]
+      messages: []
     }
   }
 
-  onAddMessage = (data) => {
+  onAddMessage = (usuario, mensagem) => {
+    const msg = {
+      user: usuario,
+      message: mensagem
+    }
+
     this.setState({
-      messages: [...this.state.messages, data]
+      messages: [...this.state.messages, msg]
     })
   } 
+
 
   render() {
     return (
       <Box>
         <List items={this.state.messages} />
-        <Formulario onAddMessage={this.onAddMessage}/>
+        <Formulario clickBotao={this.onAddMessage}/>
       </Box>
     )
   }
