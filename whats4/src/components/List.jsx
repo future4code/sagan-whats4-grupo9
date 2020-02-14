@@ -16,17 +16,18 @@ class List extends React.Component {
   }
   render() {
     return (
-      <Ul>
-        {this.props.items.map((value, index) => {
-          let Tag = Item
-          if (value.user.toLowerCase() === "eu") {
-            Tag = UserItem
-          }
-          return (
-            <Tag user={value.user} message={value.message} />
-          )
-        })}
-      </Ul>
+        <Ul>
+          {this.props.items.map((value, index) => {
+            let Tag = Item
+
+            if (value.user && value.user.toLowerCase() === "eu") {
+              Tag = UserItem
+            }
+            return (
+              <Tag key={index} user={value.user} message={value.message} />
+            )
+          })}
+        </Ul>
     )
   }
 }
