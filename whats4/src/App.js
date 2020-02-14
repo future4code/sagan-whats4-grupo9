@@ -38,7 +38,7 @@ class App extends React.Component {
     return (
       <Box>
         <List items={this.state.messages} />
-        <Formulario onAddMessage={onAddMessage}/>
+        <Formulario onAddMessage={this.onAddMessage}/>
       </Box>
     )
   }
