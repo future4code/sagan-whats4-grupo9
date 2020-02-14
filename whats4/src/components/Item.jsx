@@ -44,9 +44,9 @@ class Item extends React.Component {
     super(props)
   }
   render() {
-    let { user, message } = this.props;
+    let { user, message, onDoubleClick, id } = this.props;
     return (
-      <Li>
+      <Li onDoubleClick={()=>{onDoubleClick(id)}}>
         <User>{user}</User>
         <Message>{message}</Message>
       </Li>
@@ -56,7 +56,9 @@ class Item extends React.Component {
 
 Item.propTypes = {
   user: props.string.isRequired,
-  message: props.string.isRequired
+  message: props.string.isRequired,
+  onDoubleClick: props.func.isRequired,
+  id: props.number.isRequired
 }
 
 export default Item
