@@ -28,7 +28,7 @@ class Formulario extends React.Component {
             <ContainerForm>
                 <Usuario value={this.props.usuario} placeholder='Usuário'/>
                 <Texto value={this.props.texto} placeholder='Mensagem'/>
-                <Enviar>Enviar</Enviar>
+                <Enviar onClick={this.props.clickBotao}>Enviar</Enviar>
             </ContainerForm>
         )
     }
